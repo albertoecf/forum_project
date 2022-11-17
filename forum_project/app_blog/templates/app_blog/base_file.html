@@ -13,10 +13,54 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <!-- Fonts -->
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <!-- NAVBAR -->
+    <nav class="navbar navbar-default techfont">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="{% url post_list %}">My Blog</a> </li>
+          <li><a href="{% url 'about' %}">About</a> </li>
+          <li> <a href="https://github.com/albertoecf/forum_project">Github</a> </li>
+          <li> <a href="https://www.linkedin.com/feed/">Linkedin</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'post_new' %}">New Post</a>
+            </li>
+            <li>
+              <a href="{% url 'post_draft_list' %}">Drafts</a>
+            </li>
+            <li>
+              <a href="{% url 'logout' %}">Logout</a>
+            </li>
+            <li>
+              <a>Welcome: {{user.username}}</a>
+            </li>
+          {% else %}
+            <li> <a class="nav navbar-nav navbar-right" href="{% url 'login' %}"> <span class="glyphicon glyphicon-user"></span> </a> </li>
+          {% endif %}
+        </ul>
+
+      </div>
+    </nav>
     <!-- content block -->
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %}
+            {% endblock %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
   </body>
 </html>

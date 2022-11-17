@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Base</title>
+  </head>
+  <body>
+    <nav class = "navbar navbar-default navbar-static-top">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="{% url 'app_basic:list' %}">Schools</a></li>
+        <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
+        <li><a href="#"></a></li>
+      </ul>
+
+    </nav>
+
+
+    <div class="container">
+      {% block body_block %}
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
