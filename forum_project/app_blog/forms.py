@@ -15,7 +15,7 @@ class PostFormModel(forms.ModelForm):
 class CommentFormModel(forms.ModelForm):
 
     class Meta():
-        model = CommentMode
+        model = CommentModel
         fields = ('author','text')
 
         widgets = {

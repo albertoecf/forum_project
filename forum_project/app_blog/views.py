@@ -1,4 +1,4 @@
-from django.shortcuts import (render, gert_object_or_404,
+from django.shortcuts import (render, get_object_or_404,
                             redirect)
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -6,10 +6,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from app_blog.forms import PostFormModel, CommentFormModel
 from django.views.generic import (TemplateView,
-                                    Listview, DetailView,
+                                    ListView, DetailView,
                                     CreateView, UpdateView,
                                     DeleteView)
-from app_blog import PostModel, CommentModel
+from app_blog.models import PostModel, CommentModel
 # Create your views here.
 
 class AboutView(TemplateView):
@@ -32,7 +32,7 @@ class CreatePostView(LoginRequiredMixin,CreateView):
     form_class = PostFormModel
     model = PostModel
 
-class PostUpdateView(LoginRequiredMixin, Update):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     redirect_field_name = 'app_blog/post_detail.html'
     form_class = PostFormModel
@@ -78,7 +78,7 @@ def comment_approve(request,pk):
 
 @login_required
 def comment_remove(request,pk):
-    comment = gert_object_or_404(request, pk):
+    comment = gert_object_or_404(request, pk)
     post_pk = comment.post.pk
     comment.delete()
     return redirect('post_detail',pk=post_pk)
